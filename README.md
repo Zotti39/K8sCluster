@@ -12,12 +12,14 @@
 Este documento descreve os passos para configurar um nó mestre (Master Node) e um cluster Kubernetes em uma máquina virtual utilizando um script de inicialização. O script realiza a instalação e configuração dos componentes necessários para criar um ambiente Kubernetes funcional. Todos os comando aqui descritos foram passados na maquina utilizando o usuario root do sistema mas pode ser feito passando `root` antes de cada comando
 
 ## Pré-requisitos
+
 - Máquina virtual configurada com um sistema operacional Linux. (Utilizei Debian)
 - Acesso de superusuário (root) na máquina virtual.
 - Executar o script `firewallScript.sh` presente no repositorio para liberar as portas da maquina
 
 
 ## Passos para Configuração:
+
 1. Preparação do Sistema
 O script começa carregando módulos do kernel e configurando parâmetros do sistema necessários para o Kubernetes.
 
@@ -104,7 +106,7 @@ Após seguir os passos descritos neste documento e executar os scripts, você te
 ### Introdução
 ### Arquivos na pasta EC2s
 
-Este documento descreve os passos para configurar um cluster Kubernetes utilizando instâncias EC2 na AWS com OS ubuntu. O script fornecido automatiza a configuração do MasterNode, preparando o ambiente para a instalação do Kubernetes e a configuração do plugin de rede Calico. Ao utilizar o script `script1AWS.sh` para criar a instancia ec2, serão criados scripts secundarios dentro da instancia, que facilitarão o processo da configuração manual do cluster, basta executar os scripts na ordem correta, e seguir os passo descritos dentro do arquivo README.md que estará diposnivel no diretorio `/home/ubuntu` dentro da instancia e o cluster será iniciado.
+Este documento descreve os passos para configurar um cluster Kubernetes utilizando instâncias EC2 na AWS com OS ubuntu. O script fornecido automatiza a configuração do MasterNode, preparando o ambiente para a instalação do Kubernetes e a configuração do plugin de rede Calico. Ao utilizar o script `script1AWS.sh` para criar a instancia ec2(que deve ser do tipo `t3.small` ou outro type que tenha > 2Vcpus && > 2Gib VRAM), serão criados scripts secundarios dentro da instancia, que facilitarão o processo da configuração manual do cluster, basta executar os scripts na ordem correta, e seguir os passo descritos dentro do arquivo README.md que estará diposnivel no diretorio `/home/ubuntu` dentro da instancia e o cluster será iniciado.
 
 ### Pré-requisitos
 

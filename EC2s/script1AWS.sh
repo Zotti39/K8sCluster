@@ -2,14 +2,6 @@
 
 sudo swapoff -a
 
-### Add some os the alias I'm used to work with, fell free to remove or add yours to this part if you wish
-sudo echo "
-alias k='kubectl'
-alias c='clear'
-alias update='sudo apt-get update'
-" >> ~/.bashrc
-source ~/.bashrc
-
 ### Adiciona IP publico aos hosts
 sudo chmod 666 /etc/hosts 
 ip=$(curl http://checkip.amazonaws.com)
@@ -68,11 +60,12 @@ version = 2
 sudo service containerd restart
 sudo service kubelet restart
 
-### Start the cluster using `sudo kubeadm init` and follow the instructions its output will give you
-### To make it easier i will let available a file `scriptInit3.sh` with the commands you have to run after the `kubeadm init`
-### It will be necessary to remove the dots after the $ though, otherwise it wont work
+### The next steps are only required for the master node, the worker node configuration ends here!
 
-### Now you can run the Calico script to start de adds-on
+### Start the cluster using `sudo kubeadm init` and follow the instructions its output will give you
+### To make it easier i will let available a file `scriptInit3.sh` with the commands you have to run after the `kubeadm init` command be passed
+
+### Now you can run the Calico script to start de adds-on, and only after this start joining your worker pods to the cluster
 
 ### To retrieve the join token for the the kubeadm use the following command:
 kubeadm token create --print-join-command
@@ -81,9 +74,9 @@ kubeadm token create --print-join-command
 ' | sudo tee /home/ubuntu/README.md
 
 echo '#!/bin/bash
-mkdir -p $.HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $.HOME/.kube/config
-sudo chown $.(id -u):$.(id -g) $HOME/.kube/config
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ' | sudo tee /home/ubuntu/scriptInit3.sh
 sudo chmod u+x /home/ubuntu/scriptInit3.sh
 
@@ -92,3 +85,11 @@ curl https://raw.githubusercontent.com/projectcalico/calico/v3.27.3/manifests/ca
 kubectl apply -f calico.yaml
 ' | sudo tee /home/ubuntu/scriptCalico4.sh
 sudo chmod u+x /home/ubuntu/scriptCalico4.sh
+
+### Add some os the alias I'm used to work with, fell free to remove or add yours to this part if you wish
+sudo echo "
+alias k='kubectl'
+alias c='clear'
+alias update='sudo apt-get update'
+" >> ~/.bashrc
+source ~/.bashrc
