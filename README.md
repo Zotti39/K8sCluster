@@ -105,6 +105,7 @@ Após seguir os passos descritos neste documento e executar os scripts, você te
 
 ### Introdução
 ### Arquivos na pasta EC2s
+### baseado em: https://mrmaheshrajput.medium.com/deploy-kubernetes-cluster-on-aws-ec2-instances-f3eeca9e95f1
 
 Este documento descreve os passos para configurar um cluster Kubernetes utilizando instâncias EC2 na AWS com OS ubuntu. O script fornecido automatiza a configuração do MasterNode, preparando o ambiente para a instalação do Kubernetes e a configuração do plugin de rede Calico. Ao utilizar o script `script1AWS.sh` para criar a instancia ec2(que deve ser do tipo `t3.small` ou outro type que tenha > 2Vcpus && > 2Gib VRAM), serão criados scripts secundarios dentro da instancia, que facilitarão o processo da configuração manual do cluster, basta executar os scripts na ordem correta, e seguir os passo descritos dentro do arquivo README.md que estará diposnivel no diretorio `/home/ubuntu` dentro da instancia e o cluster será iniciado.
 
@@ -216,6 +217,7 @@ Após configurar o Containerd e o Kubernetes, você pode iniciar o cluster e con
         ' | sudo tee /home/ubuntu/scriptCalico4.sh
         sudo chmod u+x /home/ubuntu/scriptCalico4.sh
 
+6. 
 ### Conclusão
 
 Após seguir os passos descritos neste documento e executar os scripts, você terá um cluster Kubernetes funcional em instâncias EC2 com OS ubuntu na AWS. 
