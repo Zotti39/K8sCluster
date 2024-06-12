@@ -2,6 +2,7 @@
 
 1. [Cluster em MaquinaVirtual](#vm)
 2. [Cluster em AWS EC2s](#ec2)
+3. [Cluster com Kind](#kind)
 
 # Documentação para Configuração de Master Node e Cluster Kubernetes em uma Máquina Virtual
 
@@ -217,7 +218,33 @@ Após configurar o Containerd e o Kubernetes, você pode iniciar o cluster e con
         ' | sudo tee /home/ubuntu/scriptCalico4.sh
         sudo chmod u+x /home/ubuntu/scriptCalico4.sh
 
-6. 
 ### Conclusão
 
 Após seguir os passos descritos neste documento e executar os scripts, você terá um cluster Kubernetes funcional em instâncias EC2 com OS ubuntu na AWS. 
+
+<div id='kind'/>
+
+# Documentação para Configuração de Cluster Kubernetes utilizando Kind
+
+### Introdução
+
+Com Kind podemos iniciar um cluster kubernetes em containers docker.
+
+Para instalar `kind` usamos os seguintes comando : 
+
+        
+        [ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.23.0/kind-linux-amd64
+        chmod +x ./kind
+        sudo mv ./kind /usr/local/bin/kind
+
+Agora ao passar `kind version` teremos a confirmação de que foi instalado corretamente e a sua versão
+
+Agora para criara o cluster:
+
+        kind create cluster 
+
+As simple as that, opcionalmente podemos adicionar a flag `--name` para dar um nome ao cluster e `--image` para usar uma versão diferente do k8s no cluster. Para exluir o cluster usamos: 
+
+        kind delete cluster
+
+Done! 
