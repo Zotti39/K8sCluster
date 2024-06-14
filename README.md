@@ -247,4 +247,10 @@ As simple as that, opcionalmente podemos adicionar a flag `--name` para dar um n
 
         kind delete cluster
 
+Para acessar o que for implementado no cluster `kind` precisamos do IP do node onde a aplicação está, para isso passamos o comando :
+
+        kubectl get nodes -o wide
+
+E o <node-IP> estará localizado abaixo de ``INTERNAL-IP``, apos isso use esse IP para acessar o cluster pelo navegador, seguido do numero de porta especificado para o serviço que deseja acessar.
+
 Done! 
