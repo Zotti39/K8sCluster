@@ -137,7 +137,7 @@ sudo apt-get update
 sudo apt-get install helm
 ###Adiciona os repositorios necessarios
 helm repo add stable https://charts.helm.sh/stable
-helm repo add prometheus-community https://prometheus-community.github.io/helm-chart
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 kubectl create namespace prometheus
 ' | sudo tee /home/ubuntu/scriptHelm.sh
 sudo chmod u+x /home/ubuntu/scriptHelm.sh
